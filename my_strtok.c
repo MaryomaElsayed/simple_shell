@@ -1,40 +1,75 @@
-#include <stddef.h>
+#include "shell.h"
+#include <stdio.h>
+#include <string.h>
 
-char *strtok(char *str, const char *delim)
+unsigned int is_delim(char c, const char *delim)
 {
-	    static char *nextToken = NULL;
+	    while (*delim != '\0')
+		        {
+				        if (c == *delim)
+						            return 1;
+					        delim++;
+						    }
+	        return 0;
+}
 
-	        if (str != NULL) {
-			        nextToken = str;
-				    } else if (nextToken == NULL) {
-					            return NULL;
+char *my_strtok(char *srcString, const char *delim)
+{
+	    static char *backup_string = NULL;
+	        if (srcString == NULL)
+			    {
+				            srcString = backup_string;
+					            if (srcString == NULL)
+							            {
+									                return NULL;
+											        }
 						        }
 
-		    char *start = nextToken;
-
-		        while (*nextToken != '\0') {
-				        const char *d = delim;
-					        while (*d != '\0') {
-							            if (*nextToken == *d) {
-									                    *nextToken = '\0';
-											                    nextToken++;
-													                    if (start != nextToken - 1) {
-																                        return start;
-																			                } else {
-																						                    start = nextToken;
-																								                        break;
-																											                }
-															                }
-								                d++;
-										        }
-						        nextToken++;
-							    }
-
-			    if (start == nextToken) {
-				            return NULL;
-					        } else {
-							        return start;
+		    while (1)
+			        {
+					        if (is_delim(*srcString, delim))
+							        {
+									            srcString++;
+										                continue;
+												        }
+						        if (*srcString == '\0')
+								        {
+										            return NULL;
+											            }
+							        break;
 								    }
+
+		        char *ret = srcString;
+			    while (1)
+				        {
+						        if (*srcString == '\0')
+								        {
+										            backup_string = srcString;
+											                return ret;
+													        }
+							        if (is_delim(*srcString, delim))
+									        {
+											            *srcString = '\0';
+										}											                backup_string = srcString + 1;
+														            return ret;
+															            }
+								        srcString++;
+									{									    }
 }
+
 int main()
-{return 0;}
+{}
+	    // Input string
+	    //     char srcString[] = "simple shell project";
+	    //         // Delimiter
+	    //             const char *delim = "; ";
+	    //
+	    //                 char *token = my_strtok(srcString, delim);
+	    //                     while (token != NULL)
+	    //                         {
+	    //                                 printf("%s\n", token);
+	    //                                         token = my_strtok(NULL, delim);
+	    //                                             }
+	    //                                                 return 0;
+	    //                                                 }
+	    //
