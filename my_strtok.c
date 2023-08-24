@@ -57,7 +57,7 @@ char *my_strtok(char *srcString, const char *delim)
 }
 
 int main()
-{
+{}
 	    // Input string
 	    //     char srcString[] = "simple shell project";
 	    //         // Delimiter
