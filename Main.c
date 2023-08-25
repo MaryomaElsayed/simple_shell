@@ -19,7 +19,7 @@ void active()
 	while (1)
 	{
 		my_puts(prompt);
-		line = Read();
+		line = read_line();
 		shift = my_strspn(line, cmd_DELIM);
 		words = Parse(line, cmd_DELIM);
 
@@ -57,7 +57,7 @@ void lazy()
 	head_d = build_dirs();
 	while (1)
 	{
-		line = Read();
+		line = read_stream();
 		shift = my_strspn(line, cmd_DELIM);
 		words = Parse(line, cmd_DELIM);
 

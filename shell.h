@@ -26,7 +26,9 @@ typedef struct dirs_list
 struct dirs_list *head_d;
 
 /******Execute*****/
-char *Read();
+char *read_line(void);
+char *read_stream(void);
+int my_getchar();
 char **Parse(char *line, char *delim);
 int Execute(char **args);
 
