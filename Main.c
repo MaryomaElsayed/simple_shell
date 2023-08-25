@@ -42,10 +42,11 @@ void active()
 
 void lazy()
 {
-	char *line;
+	char *line, *path, *temp;
 	char **words;
 	int st = -1, shift = 0;
 
+	head_d = build_dirs();
 	while (1)
 	{
 		line = Read();
@@ -54,16 +55,26 @@ void lazy()
 
 		if (words != NULL)
 		{
-			st = Execute(words);
+			if(strchr(words[0], '/'))           
+				st = Execute(words);
+			else if ((path = find_path(head_d, words[0])))
+			{
+				temp = words[0];
+				words[0] = path;
+				free(temp - shift);
+				shift = 0;
+				st = Execute(words);
+			}
+			else
+				perror("Not Found--->");
+
 			free(words[0] - shift);
 			free(words);
 		}
 		free(line);
 
 		if (st >= 0)
-		{
 			exit(st);
-		}
 	}
 }
 
