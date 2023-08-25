@@ -7,7 +7,6 @@ char *Read()
 
 	if(getline(&line, &n, stdin) == EOF)
 	{
-		perror("Error in getline: ");
 		free(line);
 		free_list(head_d);
 		exit(EXIT_SUCCESS);
