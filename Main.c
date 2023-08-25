@@ -1,5 +1,13 @@
 #include "shell.h"
 
+/*void pr(char **w)
+{
+	int i;
+
+	for (i = 0; w[i] != NULL; i++)
+		printf("[%d] = %s\n", i, w[i]);
+}*/
+
 void active()
 {
 	char *prompt = "($) ";
@@ -10,9 +18,9 @@ void active()
 	head_d = build_dirs();
 	while (1)
 	{
-		printf("%s", prompt);
+		my_puts(prompt);
 		line = Read();
-		shift = strspn(line, cmd_DELIM);
+		shift = my_strspn(line, cmd_DELIM);
 		words = Parse(line, cmd_DELIM);
 
 		if (words != NULL)
@@ -23,9 +31,9 @@ void active()
 			{
 				temp = words[0];
 				words[0] = path;
+				st = Execute(words);
 				free(temp - shift);
 				shift = 0;
-				st = Execute(words);
 			}
 			else
 				perror("Not Found--->");
@@ -50,7 +58,7 @@ void lazy()
 	while (1)
 	{
 		line = Read();
-		shift = strspn(line, cmd_DELIM);
+		shift = my_strspn(line, cmd_DELIM);
 		words = Parse(line, cmd_DELIM);
 
 		if (words != NULL)
@@ -61,9 +69,9 @@ void lazy()
 			{
 				temp = words[0];
 				words[0] = path;
+				st = Execute(words);
 				free(temp - shift);
 				shift = 0;
-				st = Execute(words);
 			}
 			else
 				perror("Not Found--->");

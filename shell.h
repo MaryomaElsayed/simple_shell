@@ -48,4 +48,8 @@ char *my_strdup(const char *src);
 /*****P2_strings*****/
 size_t my_strspn(const char *m1, const char *m2);
 
+void my_puts(char *str);
+int my_putchar(char c);
+
+
 #endif
