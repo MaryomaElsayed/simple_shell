@@ -1,5 +1,25 @@
 #include "shell.h"
 
+char *my_getenv(char *var)
+{
+    int i = 0, j;
+
+    if (var == NULL || var[0] == '\0' || my_strchr(var, '=') != NULL)
+        return (NULL);
+        
+    while(environ[i])
+    {
+        j = 0;
+        while(var[j] != '\0' && environ[i][j] != '=' && (environ[i][j] == var[j]))
+            j++;
+        if (var[j] == '\0' && environ[i][j] == '=')
+            return (environ[i] + j + 1);
+        i++;
+    }
+
+    return (NULL);
+}
+
 char *find_path(list_d *h, char *cmd)
 {
 	char *path;
@@ -7,7 +27,7 @@ char *find_path(list_d *h, char *cmd)
 
 	while(h)
 	{
-		sz = strlen(cmd) + h->len + 2;
+		sz = my_strlen(cmd) + h->len + 2;
 		path = (char *) malloc(sizeof(char) * sz);
 							        
 		for(i = 0; i < h->len; i++)

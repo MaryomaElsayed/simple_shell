@@ -2,15 +2,15 @@
 
 size_t my_strlen(const char *m)
 {
-	    size_t start_count = 0;
+	size_t ln = 0;
 
-	        while (*m != '\0')
-			    {
-				            start_count++;
-					            m++;
-						        }
+	while (*m != '\0')
+	{
+		ln++;
+		m++;
+	}
 
-		    return start_count;
+	return ln;
 }
 
 char* my_strchr(const char* str, int ch)
@@ -18,69 +18,61 @@ char* my_strchr(const char* str, int ch)
 	while (*str != '\0')
 	{
 		if (*str == ch) 
-			return (char*)str;
-						        
+			return (char*)str;			        
 		str++;
 	}
 
 	return NULL;
 }
 
-char *my_strcpy(char *destination, const char *source)
+char *my_strcpy(char *dst, const char *src)
 {
-	    int m = 0;
+	int m = 0;
 
-	        if (destination == NULL)
-			    {
-				            return NULL;
-					        }
+	if (dst == NULL)
+		return NULL;
 
-		    if (destination == source)
-			        {
-					        return destination;
-						    }
+	if (dst == src)
+		return dst;
 
-		        while (source[m] != '\0')
-				    {
-					            destination[m] = source[m];
-						            m++;
-							        }
+	while (src[m] != '\0')
+	{
+		dst[m] = src[m];
+		m++;
+	}
 
-			    destination[m] = '\0';
+	dst[m] = '\0';
 
-			        return destination;
+	return dst;
 }
 
 char *my_strdup(const char *src)
 {
-	    size_t len = my_strlen(src);
-	        char *duplicate = (char *)malloc((len + 1) * sizeof(char));
+	size_t ln = my_strlen(src);
+	char *dup = (char *)malloc((ln + 1) * sizeof(char));
 
-		    if (src == NULL) 
-			        {
-					        return NULL;
-						    }
+	if (src == NULL) 
+		return NULL;
+		
+	if (dup == NULL)
+		return NULL;
 
-		        if (duplicate == NULL)
-				    {
-					            return NULL;
-						        }
-			    
-			    my_strcpy(duplicate, src);
-			        return duplicate;
+	my_strcpy(dup, src);
+
+	return (dup);
 }
 
-int my_strcmp(char *m1, char *m2)
+/*int my_strcmp(char *m1, char *m2)
 {
 	    int Compare_Status = 0;
 
 	        while ((*m1 != '\0' && *m2 != '\0') && *m1 == *m2)
 			    {
-				            m1+=5;
+				            m1++;
 					            m2++;
 						        }
 
 		    Compare_Status = (*m1 == *m2) ? 0 : (*m1 > *m2) ? 1 : -1;
 
 		        return Compare_Status;
-}
+}*/

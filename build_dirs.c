@@ -4,7 +4,7 @@ list_d *build_dirs()
 {
     int i;
     list_d *head = NULL;
-    char **dirs = Parse(getenv("PATH"), pth_DELIM);
+    char **dirs = Parse(my_getenv("PATH"), pth_DELIM);
 
     for(i = 0; dirs[i] != NULL; i++)
         add_dir(&head, dirs[i]);
@@ -18,10 +18,10 @@ list_d *build_dirs()
 list_d *add_dir(list_d **head, char *str)
 {
     list_d *New = malloc(sizeof(list_d));
-    int l = strlen(str);
+    int l = my_strlen(str);
 
     New->len = l;
-	New->dir = strdup(str);
+	New->dir = my_strdup(str);
 	New->next = *head;
 	*head = New;
 

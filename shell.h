@@ -30,10 +30,22 @@ char *Read();
 char **Parse(char *line, char *delim);
 int Execute(char **args);
 
-/*****PATH*****/
+/*****Dirs_list*****/
 list_d *build_dirs();
 list_d *add_dir(list_d **head, char *str);
 void free_list(list_d *h);
+
+/*****PATH*****/
 char *find_path(list_d *h, char *cmd);
+char *my_getenv(char *var);
+
+/*****P1_strings*****/
+size_t my_strlen(const char *m);
+char* my_strchr(const char* str, int ch);
+char *my_strcpy(char *dst, const char *src);
+char *my_strdup(const char *src);
+
+/*****P2_strings*****/
+size_t my_strspn(const char *m1, const char *m2);
 
 #endif
