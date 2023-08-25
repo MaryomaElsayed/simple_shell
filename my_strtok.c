@@ -1,3 +1,4 @@
+#include "shell.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -49,15 +50,15 @@ char *my_strtok(char *srcString, const char *delim)
 							        if (is_delim(*srcString, delim))
 									        {
 											            *srcString = '\0';
-												                backup_string = srcString + 1;
+										}											                backup_string = srcString + 1;
 														            return ret;
 															            }
 								        srcString++;
-									    }
+									{									    }
 }
 
 int main()
-{
+{}
 	    // Input string
 	    //     char srcString[] = "simple shell project";
 	    //         // Delimiter
