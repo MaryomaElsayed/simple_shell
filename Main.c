@@ -17,7 +17,7 @@ void active()
 
 		if (words != NULL)
 		{
-			if(strchr(words[0], '/'))           
+			if(my_strchr(words[0], '/'))           
 				st = Execute(words);
 			else if ((path = find_path(head_d, words[0])))
 			{
@@ -55,7 +55,7 @@ void lazy()
 
 		if (words != NULL)
 		{
-			if(strchr(words[0], '/'))           
+			if(my_strchr(words[0], '/'))           
 				st = Execute(words);
 			else if ((path = find_path(head_d, words[0])))
 			{

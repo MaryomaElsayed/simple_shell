@@ -5,7 +5,7 @@ int my_putchar(char c)
 	return (write(1, &c, 1));
 }
 
-void print_line(char *str)
+void my_puts(char *str)/*with out new line*/
 {
 	while (*str != '\0') 
 	{

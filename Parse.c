@@ -2,7 +2,7 @@
 
 char **Parse(char *line, char *delim)
 {
-	char *cpy = strdup(line);
+	char *cpy = my_strdup(line);
 	char *token;
 	char **words;
 	int i;
