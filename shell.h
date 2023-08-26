@@ -14,31 +14,36 @@
 
 #define cmd_DELIM " \n"
 #define pth_DELIM ":"
-#define integer_str(d) (*(char*)d >= 48) && (*(char*)d<= 57)
+#define integer_str(d) ((*(char *)(d) >= 48) && (*(char *)(d) <= 57))
 
 extern char **environ;
 
+/**
+ * struct dirs_list - store dirs
+ * @dir: dirs
+ * @len: ln
+ * @next: next pointer
+ */
 typedef struct dirs_list
 {
-	    char *dir;
-	        int len;
-		    struct dirs_list *next;
+	char *dir;
+	int len;
+	struct dirs_list *next;
 } list_d;
-struct dirs_list *head_d;
 
 /******Execute*****/
-char *read_line(void);
+char *read_line(list_d *h);
 char *read_stream(void);
-int my_getchar();
+int my_getchar(void);
 char **Parse(char *line, char *delim);
 int Execute(char **args);
-int check_cmd(char **words, char *line);
+int check_cmd(char **words, char *line, list_d *h);
 int Built_in(char *cmd);
-int Ex_Built_in(char **words);
+int Ex_Built_in(char **words, list_d *h);
 
 /*****Built_in*****/
-int my_exit(char **words);
-int my_env();
+int my_exit(char **words, list_d *h);
+int my_env(void);
 
 /*****Dirs_list*****/
 list_d *build_dirs();
@@ -51,7 +56,7 @@ char *my_getenv(char *var);
 
 /*****P1_strings*****/
 size_t my_strlen(const char *m);
-char *my_strchr(const char* str, int ch);
+char *my_strchr(const char *str, int ch);
 char *my_strcpy(char *dst, const char *src);
 char *my_strdup(const char *src);
 int my_strcmp(char *m1, char *m2);

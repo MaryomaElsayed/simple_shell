@@ -1,14 +1,13 @@
 #include "shell.h"
 
-/*void pr(char **w)
-{
-	int i;
-
-	for (i = 0; w[i] != NULL; i++)
-		printf("[%d] = %s\n", i, w[i]);
-}*/
-
-int check_cmd(char **words, char *line)
+/**
+ * check_cmd - check
+ * @words: args
+ * @line: line
+ * @h: head
+ * Return: integer
+*/
+int check_cmd(char **words, char *line, list_d *h)
 {
 	int st = -1, shift = 0, flag;
 	char *path, *temp;
@@ -17,12 +16,13 @@ int check_cmd(char **words, char *line)
 	if (words != NULL)
 	{
 		flag = Built_in(words[0]);
+		path = find_path(h, words[0]);
 
-		if(my_strchr(words[0], '/'))           
+		if (my_strchr(words[0], '/'))
 			st = Execute(words);
-		else if(flag)
-			st = Ex_Built_in(words);
-		else if ((path = find_path(head_d, words[0])))
+		else if (flag)
+			st = Ex_Built_in(words, h);
+		else if (path)
 		{
 			temp = words[0];
 			words[0] = path;
@@ -40,20 +40,24 @@ int check_cmd(char **words, char *line)
 	return (st);
 }
 
-void active()
+/**
+ * active - interactive
+*/
+void active(void)
 {
 	char *prompt = "($) ";
 	char *line;
 	char **words;
 	int st;
+	struct dirs_list *h;
 
-	head_d = build_dirs();
+	h = build_dirs();
 	while (1)
 	{
 		my_print(prompt);
-		line = read_line();
+		line = read_line(h);
 		words = Parse(line, cmd_DELIM);
-		st = check_cmd (words, line);
+		st = check_cmd(words, line, h);
 
 		free(line);
 
@@ -62,20 +66,25 @@ void active()
 	}
 }
 
-void lazy()
+/**
+ * lazy - non_interactive
+*/
+void lazy(void)
 {
 	char *line;
 	char **words;
 	int st;
+	struct dirs_list *h;
 
-	head_d = build_dirs();
+
+	h = build_dirs();
 	while (1)
 	{
-		line = read_line();
+		line = read_line(h);
 		words = Parse(line, cmd_DELIM);
 
-		st = check_cmd (words, line);
-		
+		st = check_cmd(words, line, h);
+
 		free(line);
 
 		if (st >= 0)
@@ -83,6 +92,10 @@ void lazy()
 	}
 }
 
+/**
+ * main - start
+ * Return: 0
+*/
 int main(void)
 {
 		if (isatty(STDIN_FILENO))

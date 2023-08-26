@@ -1,24 +1,34 @@
 #include "shell.h"
 
-int my_exit(char **words)
+/**
+ * my_exit - exit
+ * @words: args
+ * @h: head
+ * Return: integer
+*/
+int my_exit(char **words, list_d *h)
 {
-    free_list(head_d);
-    if (words[1])
-    {
-        return (atoi(words[1]));
-    }
-    else
-    {
-        return (0);
-    }
+	free_list(h);
+	if (words[1])
+	{
+		return (atoi(words[1]));
+	}
+	else
+	{
+		return (0);
+	}
 }
 
-int my_env()
+/**
+ * my_env - print env
+ * Return: integer
+*/
+int my_env(void)
 {
-    int i;
+	int i;
 
-    for (i = 0; environ[i] != NULL; i++)
-        my_puts(environ[i]);
+	for (i = 0; environ[i] != NULL; i++)
+		my_puts(environ[i]);
 
-    return (-1);
+	return (-1);
 }

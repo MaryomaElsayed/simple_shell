@@ -1,10 +1,10 @@
 #include "shell.h"
+
 /**
- * parse : search, extract, and manipulate strings
- * cpy : copy string
- * @words : pointer to string
- * @i : integer
- * return
+ * Parse - split
+ * @line: pointer to string
+ * @delim: integer
+ * Return: char**
  */
 char **Parse(char *line, char *delim)
 {
