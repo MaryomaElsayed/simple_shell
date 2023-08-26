@@ -1,5 +1,11 @@
 #include "shell.h"
-
+/**
+ * parse : search, extract, and manipulate strings
+ * cpy : copy string
+ * @words : pointer to string
+ * @i : integer
+ * return
+ */
 char **Parse(char *line, char *delim)
 {
 	char *cpy = my_strdup(line);

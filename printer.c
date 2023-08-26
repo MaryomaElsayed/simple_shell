@@ -1,5 +1,10 @@
 #include "shell.h"
-
+/**
+ * my_putchar : writes a single character to the 
+ * standard output
+ * @c : charachter
+ * Return : prints outpuy
+ */
 int my_putchar(char c)
 {
 	return (write(1, &c, 1));
