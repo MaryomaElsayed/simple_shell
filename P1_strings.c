@@ -62,17 +62,16 @@ char *my_strdup(const char *src)
 	return (dup);
 }
 
-/*int my_strcmp(char *m1, char *m2)
+int my_strcmp(char *m1, char *m2)
 {
-	    int Compare_Status = 0;
+	int cmp_st = 0;
 
-	        while ((*m1 != '\0' && *m2 != '\0') && *m1 == *m2)
-			    {
-				            m1++;
-					            m2++;
-						        }
+	while ((*m1 != '\0' && *m2 != '\0') && *m1 == *m2)
+	{
+		m1++;
+		m2++;
+	}
+	cmp_st = (*m1 == *m2) ? 0 : (*m1 > *m2) ? 1 : -1;
 
-		    Compare_Status = (*m1 == *m2) ? 0 : (*m1 > *m2) ? 1 : -1;
-
-		        return Compare_Status;
-}*/
+	return (cmp_st);
+}

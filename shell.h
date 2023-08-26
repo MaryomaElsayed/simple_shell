@@ -14,6 +14,7 @@
 
 #define cmd_DELIM " \n"
 #define pth_DELIM ":"
+#define integer_str(d) (*(char*)d >= 48) && (*(char*)d<= 57)
 
 extern char **environ;
 
@@ -31,6 +32,13 @@ char *read_stream(void);
 int my_getchar();
 char **Parse(char *line, char *delim);
 int Execute(char **args);
+int check_cmd(char **words, char *line);
+int Built_in(char *cmd);
+int Ex_Built_in(char **words);
+
+/*****Built_in*****/
+int my_exit(char **words);
+int my_env();
 
 /*****Dirs_list*****/
 list_d *build_dirs();
@@ -46,12 +54,16 @@ size_t my_strlen(const char *m);
 char* my_strchr(const char* str, int ch);
 char *my_strcpy(char *dst, const char *src);
 char *my_strdup(const char *src);
+int my_strcmp(char *m1, char *m2);
 
 /*****P2_strings*****/
 size_t my_strspn(const char *m1, const char *m2);
+int my_atoi(const char *buffer);
 
-void my_puts(char *str);
+
 int my_putchar(char c);
+void my_puts(char *str);
+void my_print(char *str);
 
 
 #endif

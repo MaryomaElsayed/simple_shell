@@ -1,6 +1,21 @@
 #include "shell.h"
 
-int my_getchar()
+char *read_line()
+{
+	char *line = NULL;
+	size_t n = 0;
+
+	if(getline(&line, &n, stdin) == EOF)
+	{
+		free(line);
+		free_list(head_d);
+		exit(EXIT_SUCCESS);
+	}
+
+	return (line);
+}
+
+/*int my_getchar()
 {
 	unsigned char c;
 	
@@ -8,9 +23,9 @@ int my_getchar()
 		return (EOF);
 	
 	return ((int)c);
-}
+}*/
 
-char *read_stream(void)
+/*char *read_stream(void)
 {
 	int i = 0;
 	char c;
@@ -35,19 +50,4 @@ char *read_stream(void)
 			line[i] = c;
 		i++;
 	}
-}
-
-char *read_line()
-{
-	char *line = NULL;
-	size_t n = 0;
-
-	if(getline(&line, &n, stdin) == EOF)
-	{
-		free(line);
-		free_list(head_d);
-		exit(EXIT_SUCCESS);
-	}
-
-	return (line);
-}
+}*/
