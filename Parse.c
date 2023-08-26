@@ -8,11 +8,14 @@
  */
 char **Parse(char *line, char *delim)
 {
-	char *cpy = my_strdup(line);
+	char *cpy;
 	char *token;
 	char **words;
 	int i;
 
+	if (line == NULL)
+		return (NULL);
+	cpy = my_strdup(line);
 	token = strtok(cpy, delim);
 	if (token == NULL)
 	{

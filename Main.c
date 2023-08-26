@@ -10,13 +10,14 @@
 int check_cmd(char **words, char *line, list_d *h)
 {
 	int st = -1, shift = 0, flag;
-	char *path, *temp;
+	char *path = NULL, *temp;
 
 	shift = my_strspn(line, cmd_DELIM);
 	if (words != NULL)
 	{
 		flag = Built_in(words[0]);
-		path = find_path(h, words[0]);
+		if (h != NULL)
+			path = find_path(h, words[0]);
 
 		if (my_strchr(words[0], '/'))
 			st = Execute(words);

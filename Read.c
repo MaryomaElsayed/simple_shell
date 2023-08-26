@@ -13,7 +13,8 @@ char *read_line(list_d *h)
 	if (getline(&line, &n, stdin) == EOF)
 	{
 		free(line);
-		free_list(h);
+		if (h != NULL)
+			free_list(h);
 		exit(EXIT_SUCCESS);
 	}
 

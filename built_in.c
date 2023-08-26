@@ -8,7 +8,8 @@
 */
 int my_exit(char **words, list_d *h)
 {
-	free_list(h);
+	if (h != NULL)
+		free_list(h);
 	if (words[1])
 	{
 		return (atoi(words[1]));

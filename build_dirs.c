@@ -8,8 +8,10 @@ list_d *build_dirs()
 {
 	int i;
 	list_d *head = NULL;
-	char **dirs = Parse(my_getenv("PATH"), pth_DELIM);
+	char **dirs = Parse(NULL, pth_DELIM);
 
+	if (dirs == NULL)
+		return (NULL);
 	for (i = 0; dirs[i] != NULL; i++)
 		add_dir(&head, dirs[i]);
 
