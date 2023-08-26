@@ -28,8 +28,8 @@ size_t my_strlen(const char *m)
  * the string
  * @ch : it is the character to be occurrend
  */
- *
-char* my_strchr(const char* str, int ch)
+
+char *my_strchr(const char* str, int ch)
 {
 	while (*str != '\0')
 	{

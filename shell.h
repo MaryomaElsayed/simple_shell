@@ -51,7 +51,7 @@ char *my_getenv(char *var);
 
 /*****P1_strings*****/
 size_t my_strlen(const char *m);
-char* my_strchr(const char* str, int ch);
+char *my_strchr(const char* str, int ch);
 char *my_strcpy(char *dst, const char *src);
 char *my_strdup(const char *src);
 int my_strcmp(char *m1, char *m2);
