@@ -8,7 +8,7 @@ list_d *build_dirs()
 {
 	int i;
 	list_d *head = NULL;
-	char **dirs = Parse(NULL, pth_DELIM);
+	char **dirs = Parse(my_getenv("PATH"), pth_DELIM);
 
 	if (dirs == NULL)
 		return (NULL);
